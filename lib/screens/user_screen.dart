@@ -122,7 +122,7 @@ class _UserScreenState extends State<UserScreen> {
                             color: Colors.white70, fontSize: 12)),
                   ),
                   const Spacer(),
-                  Text('\$${product.price.toStringAsFixed(2)}',
+                  Text('\रु${product.price.toStringAsFixed(2)}',
                       style: const TextStyle(
                           color: Color(0xFF4CAF50),
                           fontSize: 22,

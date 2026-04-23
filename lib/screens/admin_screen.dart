@@ -147,8 +147,8 @@ class _AdminScreenState extends State<AdminScreen> {
                 _statBadge(
                   'Avg Price',
                   _products.isEmpty
-                      ? '\$0'
-                      : '\$${(_products.fold(0.0, (s, p) => s + p.price) / _products.length).toStringAsFixed(2)}',
+                      ? '\रु0'
+                      : '\रु${(_products.fold(0.0, (s, p) => s + p.price) / _products.length).toStringAsFixed(2)}',
                   Colors.greenAccent,
                 ),
               ],

@@ -96,7 +96,7 @@ class ProductCard extends StatelessWidget {
                         ),
                         const Spacer(),
                         Text(
-                          '\$${product.price.toStringAsFixed(2)}',
+                          '\रु${product.price.toStringAsFixed(2)}',
                           style: const TextStyle(
                             color: Color(0xFF4CAF50),
                             fontWeight: FontWeight.bold,
@@ -136,10 +136,15 @@ class ProductCard extends StatelessWidget {
   }
 
   Widget _buildImage() {
-    // Check if it's a local file or a network URL
-    if (product.imageUrl.startsWith('http')) {
+    final url = product.imageUrl;
+
+    // Case 1: empty — show placeholder
+    if (url.isEmpty) return _placeholder();
+
+    // Case 2: network URL
+    if (url.startsWith('http')) {
       return Image.network(
-        product.imageUrl,
+        url,
         fit: BoxFit.cover,
         errorBuilder: (_, __, ___) => _placeholder(),
         loadingBuilder: (_, child, progress) {
@@ -148,15 +153,20 @@ class ProductCard extends StatelessWidget {
               child: CircularProgressIndicator(strokeWidth: 2));
         },
       );
-    } else if (product.imageUrl.isNotEmpty) {
+    }
+
+    // Case 3: local file path (picked from gallery/camera)
+    final file = File(url);
+    if (file.existsSync()) {         // check file actually exists
       return Image.file(
-        File(product.imageUrl),
+        file,
         fit: BoxFit.cover,
         errorBuilder: (_, __, ___) => _placeholder(),
       );
-    } else {
-      return _placeholder();
     }
+
+    // Case 4: path exists in string but file missing
+    return _placeholder();
   }
 
   Widget _placeholder() {

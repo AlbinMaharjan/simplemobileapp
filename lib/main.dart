@@ -7,7 +7,7 @@ import 'screens/admin_screen.dart';
 import 'screens/user_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp());//compile time constant flutter optimization
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
         useMaterial3: true,
-        fontFamily: 'Roboto',
+        fontFamily: 'Time New Roman',
       ),
       home: const SplashScreen(),
     );
